@@ -5,6 +5,26 @@
  */
 package signalanalysis;
 
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.function.Function2D;
+import org.jfree.data.function.NormalDistributionFunction2D;
+import org.jfree.data.general.DatasetUtilities;
+import org.jfree.data.xy.XYDataset;
+import org.jfree.ui.ApplicationFrame;
+import org.jfree.ui.RefineryUtilities;
+
+import org.jfree.chart.ChartFactory;
+ import org.jfree.chart.ChartPanel;
+ import org.jfree.chart.JFreeChart;
+ import org.jfree.chart.plot.PlotOrientation;
+ import org.jfree.data.xy.XYSeries;
+ import org.jfree.data.xy.XYSeriesCollection;
+ import org.jfree.ui.ApplicationFrame;
+ import org.jfree.ui.RefineryUtilities;
+
 import static java.lang.Math.sqrt;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,22 +34,42 @@ import java.util.Collections;
  *
  * @author Jvt-WinLaptop
  */
-public class SignalAnalysis {
+public class SignalAnalysis extends ApplicationFrame{
+    
+    public SignalAnalysis(final String title, ArrayList<Float> lags, String x, String y, String name) {
+
+    super(title);
+    final XYSeries series = new XYSeries(name);
+        for (int i = 0; i < lags.size(); i++) {
+            series.add(i, lags.get(i));
+        }
+        
+    final XYSeriesCollection data = new XYSeriesCollection(series);
+    final JFreeChart chart = ChartFactory.createXYLineChart(
+        title,
+        x, 
+        y, 
+        data,
+        PlotOrientation.VERTICAL,
+        true,
+        true,
+        false
+    );
+    final ChartPanel chartPanel = new ChartPanel(chart);
+    chartPanel.setPreferredSize(new java.awt.Dimension(500, 270));
+    setContentPane(chartPanel);
+}
 
     
     
     public static void main(String[] args) {
         // reales
-        //float[] array1 = {0f, 0.1f, 0.3f, 0.2f, -0.1f, -0.3f, -0.2f, -0.1f, 0.1f, 0.4f, 0.8f, 1.3f, 1.5f, 1.7f, 1.6f, 1.3f, 1.1f, 0.8f, 0.4f, 0.2f, -0.1f, -0.4f, -0.7f, -0.9f, -1f, -1.4f, -1.7f, -1.9f, -2.2f, -2.5f, -2.8f, -2.4f, -1.9f, -1.7f, -1.4f, -1.2f, -0.9f, -0.6f, -0.2f, 0.1f, 0.4f, 0.8f, 1.1f, 1.4f, 1.6f, 1.8f, 1.9f, 2.2f, 2.5f, 2.6f, 2.3f, 2.1f, 1.8f, 1.7f, 1.5f, 1.3f, 1f, 0.7f, 0.5f, 0.3f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, -0.2f, 0.1f, 0.4f, 0.8f, 1.1f, 1.4f, 1.6f, 1.8f, 1.6f, 1.4f, 1.1f, 0.6f, 0.2f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f};
-        //float[] array2 = {0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0.1f, 0.2f, 0.1f, -0.1f, -0.3f, -0.2f, -0.1f, 0.1f, 0.4f, 0.8f, 0.9f, 1.1f, 1.2f, 1.4f, 1.3f, 1.1f, 0.8f, 0.4f, 0.2f, -0.1f, -0.3f, -0.4f, -0.6f, -0.8f, -0.9f, -1f, -1.2f, -1.4f, -1.7f, -2f, -1.8f, -1.9f, -1.7f, -1.4f, -1.2f, -0.9f, -0.5f, -0.2f, 0f, 0.4f, 0.8f, 1.1f, 1.4f, 1.6f, 1.8f, 1.9f, 2.1f, 2.3f, 2.4f, 2.3f, 2.1f, 1.8f, 1.7f, 1.5f, 1.3f, 1f, 0.7f, 0.5f, 0.3f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f};
-        
-        //float[] array1 = {0f, 0.1f, 0.3f, 0.2f, -0.1f, -0.3f, -0.2f, -0.1f, 0.1f, 0.4f, 0.8f, 1.3f, 1.5f, 1.7f, 1.6f, 1.3f, 1.1f, 0.8f, 0.4f, 0.2f, -0.1f, -0.4f, -0.7f, -0.9f, -1f, -1.4f, -1.7f, -1.9f, -2.2f, -2.5f, -2.8f, -2.4f, -1.9f, -1.7f, -1.4f, -1.2f, -0.9f, -0.6f, -0.2f, 0.1f, 0.4f, 0.8f, 1.1f, 1.4f, 1.6f, 1.8f, 1.9f, 2.2f, 2.5f, 2.6f, 2.3f, 2.1f, 1.8f, 1.7f, 1.5f, 1.3f, 1f, 0.7f, 0.5f, 0.3f, 0f};
-        //float[] array2 = {0f, 0.1f, 0.3f, 0.2f, -0.1f, -0.3f, -0.2f, -0.1f, 0.1f, 0.4f, 0.8f, 1.3f, 1.5f, 1.7f, 1.6f, 1.3f, 1.1f, 0.8f, 0.4f, 0.2f, -0.1f, -0.4f, -0.7f, -0.9f, -1f, -1.4f, -1.7f, -1.9f, -2.2f, -2.5f, -2.8f, -2.4f, -1.9f, -1.7f, -1.4f, -1.2f, -0.9f, -0.6f, -0.2f, 0.1f, 0.4f, 0.8f, 1.1f, 1.4f, 1.6f, 1.8f, 1.9f, 2.2f, 2.5f, 2.6f, 2.3f, 2.1f, 1.8f, 1.7f, 1.5f, 1.3f, 1f, 0.7f, 0.5f, 0.3f, 0f};
-        //float[] array2 = {0f, 0.1f, 0.2f, 0.1f, -0.1f, -0.3f, -0.2f, -0.1f, 0.1f, 0.4f, 0.8f, 0.9f, 1.1f, 1.2f, 1.4f, 1.3f, 1.1f, 0.8f, 0.4f, 0.2f, -0.1f, -0.3f, -0.4f, -0.6f, -0.8f, -0.9f, -1f, -1.2f, -1.4f, -1.7f, -2f, -1.8f, -1.9f, -1.7f, -1.4f, -1.2f, -0.9f, -0.5f, -0.2f, 0f, 0.4f, 0.8f, 1.1f, 1.4f, 1.6f, 1.8f, 1.9f, 2.1f, 2.3f, 2.4f, 2.3f, 2.1f, 1.8f, 1.7f, 1.5f, 1.3f, 1f, 0.7f, 0.5f, 0.3f, 0f};
+        float[] array1 = {0f, 0.1f, 0.3f, 0.2f, -0.1f, -0.3f, -0.2f, -0.1f, 0.1f, 0.4f, 0.8f, 1.3f, 1.5f, 1.7f, 1.6f, 1.3f, 1.1f, 0.8f, 0.4f, 0.2f, -0.1f, -0.4f, -0.7f, -0.9f, -1f, -1.4f, -1.7f, -1.9f, -2.2f, -2.5f, -2.8f, -2.4f, -1.9f, -1.7f, -1.4f, -1.2f, -0.9f, -0.6f, -0.2f, 0.1f, 0.4f, 0.8f, 1.1f, 1.4f, 1.6f, 1.8f, 1.9f, 2.2f, 2.5f, 2.6f, 2.3f, 2.1f, 1.8f, 1.7f, 1.5f, 1.3f, 1f, 0.7f, 0.5f, 0.3f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, -0.2f, 0.1f, 0.4f, 0.8f, 1.1f, 1.4f, 1.6f, 1.8f, 1.6f, 1.4f, 1.1f, 0.6f, 0.2f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f};
+        float[] array2 = {0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0.1f, 0.2f, 0.1f, -0.1f, -0.3f, -0.2f, -0.1f, 0.1f, 0.4f, 0.8f, 0.9f, 1.1f, 1.2f, 1.4f, 1.3f, 1.1f, 0.8f, 0.4f, 0.2f, -0.1f, -0.3f, -0.4f, -0.6f, -0.8f, -0.9f, -1f, -1.2f, -1.4f, -1.7f, -2f, -1.8f, -1.9f, -1.7f, -1.4f, -1.2f, -0.9f, -0.5f, -0.2f, 0f, 0.4f, 0.8f, 1.1f, 1.4f, 1.6f, 1.8f, 1.9f, 2.1f, 2.3f, 2.4f, 2.3f, 2.1f, 1.8f, 1.7f, 1.5f, 1.3f, 1f, 0.7f, 0.5f, 0.3f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f};
         
         // ejemplo youtube crosscorr
-        float[] array1 = {0.1f, 0.2f, -0.1f, 4.1f, -2f, 1.5f, -0.1f};
-        float[] array2 = {0.1f, 4f, -2.2f, 1.6f, 0.1f, 0.1f, 0.2f};
+        //float[] array1 = {0.1f, 0.2f, -0.1f, 4.1f, -2f, 1.5f, -0.1f};
+        //float[] array2 = {0.1f, 4f, -2.2f, 1.6f, 0.1f, 0.1f, 0.2f};
         
         // ejemplo youtube normalization
         //float[] array1 = {2, 3, -1, 3};
@@ -43,6 +83,16 @@ public class SignalAnalysis {
         for (int i = 0; i < array2.length; i++) {
             yArray.add(array2[i]);
         }
+        
+        final SignalAnalysis graphSignal1 = new SignalAnalysis("Signal X", xArray, "Time", "Y", "Sent Signal");
+        graphSignal1.pack();
+        RefineryUtilities.centerFrameOnScreen(graphSignal1);
+        graphSignal1.setVisible(true);
+        
+        final SignalAnalysis graphSignal2 = new SignalAnalysis("Signal Y", yArray, "Time", "Y", "Received Signal");
+        graphSignal2.pack();
+        RefineryUtilities.centerFrameOnScreen(graphSignal2);
+        graphSignal2.setVisible(true);
         
         System.out.println(array1.length);
         System.out.println(array2.length);
@@ -64,27 +114,35 @@ public class SignalAnalysis {
         //System.out.println("Correlation simple: " + doCorrelation(xArray, yArray));
         //System.out.println("Correlation norm: " + doCorrelationNorm(xArray, yArray));
         
-        //EJECUCION REAL NORMALIZADO
-        
+        //Cross Correlation execution NO NORMALIZED
         ArrayList<Float> lags = new ArrayList<Float>();
         lags.addAll(doCrossCorrelationNeg(xArray, yArray));
         lags.addAll(doCrossCorrelation(xArray, yArray));
         
+        //Cross Correlation execution NORMALIZED
+        ArrayList<Float> lagsNorm = new ArrayList<Float>();
+        lagsNorm.addAll(doCrossCorrelationNegNorm(xArray, yArray));
+        lagsNorm.addAll(doCrossCorrelationNorm(xArray, yArray));
+  
         System.out.println("LAGS VECTOR: " + lags.toString());
         System.out.println("MEJOR LAG: " + bestLag(lags));
         System.out.println("RESUL LAG: " + lags.get(bestLag(lags)));
         
+        System.out.println("LAGS VECTOR NORMALIZADO: " + lagsNorm.toString());
+        System.out.println("MEJOR LAG: " + bestLag(lagsNorm));
+        System.out.println("RESUL LAG: " + lagsNorm.get(bestLag(lagsNorm)));
+
+        //Graphing NO Normalized Lags
+        final SignalAnalysis graph = new SignalAnalysis("Lags", lags,  "Time", "Y", " ");
+        graph.pack();
+        RefineryUtilities.centerFrameOnScreen(graph);
+        graph.setVisible(true);
         
-        //EJECUCION REAL NO NORMALIZADO
-        /*
-        ArrayList<Float> lags = new ArrayList<Float>();
-        lags.addAll(doCrossCorrelationNeg(xArray, yArray));
-        lags.addAll(doCrossCorrelation(xArray, yArray));
-        
-        System.out.println("LAGS VECTOR: " + lags.toString());
-        System.out.println("MEJOR LAG: " + bestLag(lags));
-        System.out.println("RESUL LAG: " + lags.get(bestLag(lags)));
-        */
+        //Graphing Normalized Lags
+        final SignalAnalysis graphNorm = new SignalAnalysis("Normalized Lags", lagsNorm,  "Time", "Y", " ");
+        graphNorm.pack();
+        RefineryUtilities.centerFrameOnScreen(graphNorm);
+        graphNorm.setVisible(true);
     }
     
     private static Float doCorrelation(ArrayList<Float> xArray, ArrayList<Float> yArray){
@@ -294,5 +352,4 @@ public class SignalAnalysis {
         return pos;
     }
 
-    
 }
