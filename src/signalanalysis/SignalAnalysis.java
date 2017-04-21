@@ -108,6 +108,7 @@ public class SignalAnalysis{
         return reverse(lags);
     }
     
+    //Execute NORMALIZED Cross Correlation, on positive lags
     public ArrayList<Float> doCrossCorrelationNorm(){
         float x, y;
         x = 0; y = 0;
