@@ -223,7 +223,7 @@ public class uinterface extends javax.swing.JFrame {
         this.resultsText.setText("----- RESULTS -----\n" + "Normalized Correlation: " + SignalPair.doCorrelationNorm());
     }//GEN-LAST:event_CorrelationNormButtonActionPerformed
 
-    //Simple Cross Correlation Button
+    //Cross Correlation Button
     private void CrossCorrelationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrossCorrelationButtonActionPerformed
         lags.addAll(SignalPair.doCrossCorrelationNeg());
         lags.addAll(SignalPair.doCrossCorrelation());
@@ -261,6 +261,7 @@ public class uinterface extends javax.swing.JFrame {
         graphCrossCorrelation.pack();
         RefineryUtilities.centerFrameOnScreen(graphCrossCorrelation);
         graphCrossCorrelation.setVisible(true);
+        
     }//GEN-LAST:event_CrossCorrelationGraphButtonActionPerformed
     
     //Normalized Cross Correlation Graph Button
@@ -276,6 +277,7 @@ public class uinterface extends javax.swing.JFrame {
         ArrayList<Float> receivedMoved;
         System.out.println("GET LAG POS: " + SignalAnalysis.getLagPos(lagsNorm, SignalAnalysis.bestLag(lagsNorm)));
         //Move the second signal to the left
+        System.out.println("ANTES DEL IF: " + SignalAnalysis.getLagPos(lagsNorm, SignalAnalysis.bestLag(lagsNorm)));
         if(SignalAnalysis.getLagPos(lagsNorm, SignalAnalysis.bestLag(lagsNorm))<0){
             System.out.println("MENOS 0");
             System.out.println("GET LAG POS: " + SignalAnalysis.getLagPos(lagsNorm, SignalAnalysis.bestLag(lagsNorm)));
