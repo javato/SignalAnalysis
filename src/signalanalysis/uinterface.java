@@ -121,7 +121,7 @@ public class uinterface extends javax.swing.JFrame {
             }
         });
 
-        timeDelayButton.setText("Time Units Delay");
+        timeDelayButton.setText("Calculate Delay");
         timeDelayButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 timeDelayButtonActionPerformed(evt);
@@ -150,7 +150,7 @@ public class uinterface extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(CrossCorrelationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(CrossCorrelationNormButton, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(CrossCorrelationGraphButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(CrossCorrelationNormGraphButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -237,8 +237,8 @@ public class uinterface extends javax.swing.JFrame {
 
     //Normalized Cross Correlation Button
     private void CrossCorrelationNormButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrossCorrelationNormButtonActionPerformed
-        lagsNorm.addAll(SignalPair.doCrossCorrelationNegNorm());
-        lagsNorm.addAll(SignalPair.doCrossCorrelationNorm());
+        lagsNorm.addAll(SignalPair.doCrossCorrelationNormalizedNeg());
+        lagsNorm.addAll(SignalPair.doCrossCorrelationNormalized());
         
         System.out.println("----- RESULTS -----");
         System.out.println("NORMALIZED Lag Vector: " + lagsNorm.toString());

@@ -44,7 +44,7 @@
                           <Component id="CrossCorrelationButton" min="-2" pref="141" max="-2" attributes="0"/>
                           <Component id="CrossCorrelationNormButton" min="-2" pref="141" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="89" max="32767" attributes="0"/>
+                      <EmptySpace pref="93" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="CrossCorrelationGraphButton" max="32767" attributes="0"/>
                           <Component id="CrossCorrelationNormGraphButton" max="32767" attributes="0"/>
@@ -199,7 +199,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="timeDelayButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Time Units Delay"/>
+        <Property name="text" type="java.lang.String" value="Calculate Delay"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="timeDelayButtonActionPerformed"/>
