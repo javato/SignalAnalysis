@@ -211,13 +211,13 @@ public class SignalAnalysis{
         }
         denom = (float)sqrt(x * y);
         
-        //Calculating the denominators
+        //Calculating the numerator
         for (int i = 0; i < this.xArrayList.size(); i++) {
             System.out.println("---- " + iteraciones + " LAG ----");
             for (int j = 0; j < this.xArrayList.size() - iteraciones; j++) {
-                System.out.println("numerator = " + counter + " + " + this.yArrayList.get(j+iteraciones) + " - " + yAvg + " * " + this.xArrayList.get(j) + " - " + xAvg);
+                //System.out.println("numerator = " + counter + " + " + this.yArrayList.get(j+iteraciones) + " - " + yAvg + " * " + this.xArrayList.get(j) + " - " + xAvg);
                 counter = counter + ((this.xArrayList.get(j+iteraciones) - xAvg) * (this.yArrayList.get(j) - yAvg));
-                System.out.println("numerator = " + counter);
+                //System.out.println("numerator = " + counter);
             }
             System.out.println("numerator final = " + counter);
             correlation = counter / denom;
@@ -256,13 +256,13 @@ public class SignalAnalysis{
         }
         denom = (float)sqrt(x * y);
         
-        //Calculating the denominators
+        //Calculating the numerator
         for (int i = 0; i < this.yArrayList.size() - 1; i++) {
-            System.out.println("---- " + iteraciones + " LAG ----");
+            System.out.println("---- -" + iteraciones + " LAG ----");
             for (int j = 0; j < this.yArrayList.size() - iteraciones; j++) {
-                System.out.println("numerator = " + counter + " + " + this.yArrayList.get(j+iteraciones) + " - " + yAvg + " * " + this.xArrayList.get(j) + " - " + xAvg);
+                //System.out.println("numerator = " + counter + " + " + this.yArrayList.get(j+iteraciones) + " - " + yAvg + " * " + this.xArrayList.get(j) + " - " + xAvg);
                 counter = counter + ((this.yArrayList.get(j+iteraciones) - yAvg)* (this.xArrayList.get(j) - xAvg));              
-                System.out.println("numerator = " + counter);
+                //System.out.println("numerator = " + counter);
             }
             System.out.println("numerator final = " + counter);
             correlation = counter / denom;
